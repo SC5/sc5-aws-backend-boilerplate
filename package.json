@@ -1,0 +1,60 @@
+{
+  "name": "sc5AWSBackendBoilerplate",
+  "version": "0.1.0",
+  "versionNote": "!!!UPDATE VERSION NUMBER ALSO TO SCRIPTS FILE PATHS BELOW!!!",
+  "description": "Backend / server for HoN webshop",
+  "main": "index.js",
+  "dependencies": {
+    "aws-cloudformation-lookup": "^0.1.3"
+  },
+  "devDependencies": {
+    "aws-cloudformation-lookup": "0.1.2",
+    "aws-sdk": "2.2.0",
+    "bluebird": "2.9.34",
+    "del": "2.0.2",
+    "expect": "1.6.0",
+    "gulp": "3.9.0",
+    "gulp-apidoc": "0.0.3",
+    "gulp-awslambda": "0.2.2",
+    "gulp-awspublish": "3.0.1",
+    "gulp-bump": "0.1.10",
+    "gulp-cached": "1.0.1",
+    "gulp-chug": "0.4.2",
+    "gulp-file": "0.2.0",
+    "gulp-flatten": "0.2.0",
+    "gulp-install": "0.4.0",
+    "gulp-jscs": "1.6.0",
+    "gulp-jshint": "1.11.2",
+    "gulp-load-plugins": "0.5.3",
+    "gulp-mocha": "2.1.2",
+    "gulp-nsp": "2.1.0",
+    "gulp-plumber": "0.6.3",
+    "gulp-serve": "0.2.0",
+    "gulp-sym": "0.0.14",
+    "gulp-using": "0.0.1",
+    "gulp-util": "2.2.20",
+    "gulp-zip": "3.0.2",
+    "lambda-wrapper": "0.0.3",
+    "mocha": "2.2.5",
+    "request": "2.67.0",
+    "request-json": "0.5.3",
+    "run-sequence": "0.3.6",
+    "urlencode": "1.1.0"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "testApi": "gulp testapi",
+    "build": "gulp build",
+    "buildAPI": "gulp buildSwaggerFile",
+    "setup": "bash setup.sh",
+    "upload": "gulp upload",
+    "createStack": "aws cloudformation create-stack --stack-name $STACK_NAME --template-body=file://dist/cloudformationTpl_sc5AWSBackendBoilerplate_0.1.0.json --capabilities=CAPABILITY_IAM --region=eu-west-1",
+    "updateStack": "aws cloudformation update-stack --stack-name $STACK_NAME --template-body=file://dist/cloudformationTpl_sc5AWSBackendBoilerplate_0.1.0.json --capabilities=CAPABILITY_IAM --region=eu-west-1"
+  },
+  "config": {
+    "bucket": "hon-webshop-resources",
+    "apiGatewayRole": "apiGatewayRole"
+  },
+  "author": "Mikael Puittinen/SC5 Online Oy",
+  "license": "MIT"
+}

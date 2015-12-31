@@ -1,0 +1,15 @@
+{
+  "Type" : "AWS::SNS::Topic",
+  "Properties" : {
+    "DisplayName" : "Errors",
+    "Subscription" : [],
+    "TopicName": {
+      "Fn::Join": [ "", [
+        { "Ref": "AWS::StackName" },
+          "-errorsTopic"
+      ]]
+    }
+  },
+  "Key": "errorsTopic",
+  "DependsOn": []
+}

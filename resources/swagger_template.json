@@ -1,0 +1,20 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "[automatic]",
+        "description": "[automatic]",
+        "version": "[automatic]"
+    },
+    "host": "webshop-api.happy-or-not.com",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+    },
+    "definitions": {
+    }
+}

@@ -1,0 +1,99 @@
+{
+    "paths": {
+        "/companies/{countryCode}/{businessID}": {
+            "get": {
+                "summary": "Companies",
+                "description": "Returns company info based on VAT Number",
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "path",
+                        "description": "ISO country code.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "businessID",
+                        "in": "path",
+                        "description": "Company businessID (without country code).",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Companies"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A company",
+                        "schema": {
+                            "#ref": "#/definitions/Company"
+                        },
+                        "headers" : {
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "headers" : {
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "x-amazon-apigateway-integration" : {
+                    "type" : "aws",
+                    "uri" : "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/{STACK:sampleCompaniesLambda:Arn}/invocations",
+                    "httpMethod" : "POST",
+                    "requestTemplates" : {
+                        "application/json" : "{\n\"countryCode\" : \"$input.params('countryCode')\",\n\"businessID\" : \"$input.params('businessID')\"\n}"
+                    },
+                    "requestParameters" : {
+                        "integration.request.path.countryCode" : "method.request.path.countryCode",
+                        "integration.request.path.businessID" : "method.request.path.businessID"
+                    },
+                    "cacheNamespace" : "cache namespace",
+                    "cacheKeyParameters" : [],
+                    "responses" : {
+                        "default" : {
+                            "statusCode" : "200",
+                            "responseParameters" : {
+                            },
+                            "responseTemplates" : {
+                                "application/json" : null
+                            }
+                        },
+                        ".*NOT_FOUND.*" : {
+                            "statusCode" : "404",
+                            "responseParameters" : {
+                            },
+                            "responseTemplates" : {
+                                "application/json" : null
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Company": {
+            "countryCode" : {
+                "type": "string",
+                "description": "ISO country code (e.g. FI)"
+            }, 
+            "vatNumber" : {
+                "type": "string",
+                "description": "VAT number (without country code)"
+            }, 
+            "name" : {
+                "type": "string",
+                "description": "Company name"
+            },
+            "address" : {
+                "type": "string",
+                "description": "Address"
+            }
+        }
+    }
+}

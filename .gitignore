@@ -1,0 +1,20 @@
+# Ignore vscode settings dir
+.vscode/
+.DS_STORE
+
+# Symlinked modules directory under lambda-functions
+lambda-functions/local-modules
+**/.awspublish*
+**/npm-debug.log
+
+# lambda-function gulpfiles are managed centrally in gulpfile_functions.js
+lambda-functions/*/gulpfile.js
+
+# Ignore all node_modules dirs globally
+**/node_modules
+
+# Server ignores
+**/dist
+**/build
+**/temp
+
